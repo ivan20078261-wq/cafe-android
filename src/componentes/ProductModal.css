@@ -1,0 +1,192 @@
+.size-buttons {
+    display: flex;
+    gap: 8px;
+    height: 48px;
+}
+
+.size-btn {
+    flex: 1;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition:
+        background 0.15s,
+        color 0.15s,
+        border-color 0.15s;
+    padding: 0;
+}
+
+.size-btn:hover {
+    filter: brightness(0.95);
+}
+
+.size-btn:active {
+    filter: brightness(0.9);
+}
+
+.milk-section {
+    margin-top: 20px;
+}
+
+.milk-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.milk-chip {
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    padding: 10px 18px;
+    transition:
+        background 0.15s,
+        color 0.15s,
+        border-color 0.15s;
+}
+
+.milk-chip:hover {
+    filter: brightness(0.95);
+}
+
+.milk-chip:active {
+    filter: brightness(0.9);
+}
+
+.notes-textarea {
+    width: 100%;
+    border-radius: 12px;
+    border: 1.5px solid #eae0d0;
+    padding: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: none;
+    outline: none;
+    transition: border-color 0.15s;
+    min-height: 72px;
+}
+
+.notes-textarea:focus {
+    border-color: #2c1810;
+}
+
+.modal-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 8px;
+}
+
+.modal-footer {
+    border-top: 1px solid #eae0d0;
+    padding-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.add-btn {
+    flex: 1;
+    height: 50px;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.15s;
+}
+
+.add-btn:hover {
+    filter: brightness(1.1);
+}
+
+.add-btn:active {
+    filter: brightness(0.95);
+}
+
+.quantity-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.qty-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    border: 1.5px solid #eae0d0;
+    background: #faf7f2;
+    font-size: 20px;
+    font-weight: 600;
+    color: #3d2b1f;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        background 0.15s,
+        border-color 0.15s;
+}
+
+.qty-btn:hover {
+    background: #f5f0eb;
+    border-color: #2c1810;
+}
+
+.qty-btn:active {
+    background: #eae0d0;
+}
+
+.qty-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #3d2b1f;
+    min-width: 32px;
+    text-align: center;
+}
+.menu-item {
+    transition:
+        transform 0.12s ease,
+        background 0.15s,
+        border-color 0.2s;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.menu-item:active {
+    transform: scale(0.97);
+    background: #f5ede0;
+    border-color: #eae0d0;
+}
+
+/* ── Modal animations ──────────────────────────────────── */
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-backdrop {
+    animation: modalFadeIn 0.3s ease both;
+}
+
+.modal-sheet {
+    animation: modalSlideUp 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}

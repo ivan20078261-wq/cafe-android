@@ -1,0 +1,17 @@
+.boxcat {
+    display: flex;
+    margin-top: 15px;
+    border: 10px red;
+}
+.categoria-button {
+    padding: 12px 20px; /* Aumenta el padding vertical y horizontal */
+    height: 98px; /* Altura fija */
+    min-height: 48px; /* Altura mínima (por si el contenido es pequeño) */
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-inline: 5px;
+}

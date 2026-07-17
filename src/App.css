@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap");
+
+.empresa {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ── Animaciones elegantes ─────────────────────────────── */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Clases utilitarias */
+
+.anim-fade-in {
+    animation: fadeIn 0.5s ease both;
+}
+
+.anim-header {
+    animation: fadeSlideDown 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+
+.anim-fade-slide-up {
+    animation: fadeSlideUp 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+
+.anim-scale-in {
+    animation: scaleIn 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+
+/* Solo opacidad — para elementos que ya usan transform en su posicionamiento */
+.anim-fade-in-only {
+    animation: fadeIn 0.45s ease both;
+}
+
+@media (max-width: 480px) {
+    .empresa {
+        font-size: 24px;
+    }
+}
