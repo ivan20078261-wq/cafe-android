@@ -1220,93 +1220,103 @@ function VistaMenu() {
 
           {/* Barra inferior */}
           <div
-            className="anim-fade-slide-up"
             style={{
               position: "fixed",
-              bottom: 0,
-              left: "50%",
-              transform: "translateX(-50%)",
-              maxWidth: 480,
-              width: "calc(100% - 24px)",
-              background: colors.surface.base,
-              borderTop: `1px solid ${colors.border.default}`,
-              padding: "12px 16px",
+              bottom: 16,
+              left: 0,
+              right: 0,
               display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
+              justifyContent: "center",
               zIndex: 1000,
-              gap: 10,
-              boxShadow: colors.shadow.bar,
+              pointerEvents: "none",
             }}
           >
-            <button
-              onClick={() => setShowPedido((v) => !v)}
+            <div
+              className="anim-fade-slide-up"
               style={{
-                background: colors.surface.card,
-                border: "none",
-                borderRadius: 12,
-                padding: "9px 14px",
-                cursor: "pointer",
+                pointerEvents: "auto",
+                maxWidth: 480,
+                width: "calc(100% - 32px)",
+                background: colors.surface.base,
+                borderTop: `1px solid ${colors.border.default}`,
+                padding: "12px 16px",
                 display: "flex",
                 alignItems: "center",
-                gap: 8,
-                fontSize: 13,
-                fontWeight: 600,
-                color: colors.text.primary,
+                justifyContent: "space-between",
+                gap: 10,
+                boxShadow: colors.shadow.bar,
+                borderRadius: "16px",
               }}
             >
-              <span
-                key={cantidadPedido}
-                className="anim-pop"
+              <button
+                onClick={() => setShowPedido((v) => !v)}
                 style={{
-                  background: colors.brand.espresso,
-                  color: colors.text.onDark,
-                  borderRadius: "50%",
-                  width: 20,
-                  height: 20,
+                  background: colors.surface.card,
+                  border: "none",
+                  borderRadius: 12,
+                  padding: "9px 14px",
+                  cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 11,
-                  fontWeight: 700,
+                  gap: 8,
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: colors.text.primary,
                 }}
               >
-                {cantidadPedido}
-              </span>
-              Ver pedido
-            </button>
+                <span
+                  key={cantidadPedido}
+                  className="anim-pop"
+                  style={{
+                    background: colors.brand.espresso,
+                    color: colors.text.onDark,
+                    borderRadius: "50%",
+                    width: 20,
+                    height: 20,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: 11,
+                    fontWeight: 700,
+                  }}
+                >
+                  {cantidadPedido}
+                </span>
+                Ver pedido
+              </button>
 
-            <p
-              style={{
-                fontSize: 18,
-                fontWeight: 700,
-                color: colors.text.primary,
-                margin: 0,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              ${totalPedido}
-            </p>
+              <p
+                style={{
+                  fontSize: 18,
+                  fontWeight: 700,
+                  color: colors.text.primary,
+                  margin: 0,
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                ${totalPedido}
+              </p>
 
-            <button
-              onClick={handleEnviar}
-              disabled={enviando}
-              style={{
-                background: enviado ? "#16A34A" : colors.brand.espresso,
-                color: colors.text.onDark,
-                border: "none",
-                borderRadius: 12,
-                padding: "11px 20px",
-                fontSize: 14,
-                fontWeight: 600,
-                cursor: enviando ? "not-allowed" : "pointer",
-                opacity: enviando ? 0.7 : 1,
-                transition: "background 0.2s",
-                boxShadow: colors.shadow.sm,
-              }}
-            >
-              {enviado ? "¡Enviado!" : enviando ? "Enviando..." : "Enviar"}
-            </button>
+              <button
+                onClick={handleEnviar}
+                disabled={enviando}
+                style={{
+                  background: enviado ? "#16A34A" : colors.brand.espresso,
+                  color: colors.text.onDark,
+                  border: "none",
+                  borderRadius: 12,
+                  padding: "11px 20px",
+                  fontSize: 14,
+                  fontWeight: 600,
+                  cursor: enviando ? "not-allowed" : "pointer",
+                  opacity: enviando ? 0.7 : 1,
+                  transition: "background 0.2s",
+                  boxShadow: colors.shadow.sm,
+                }}
+              >
+                {enviado ? "¡Enviado!" : enviando ? "Enviando..." : "Enviar"}
+              </button>
+            </div>
           </div>
         </>
       )}
