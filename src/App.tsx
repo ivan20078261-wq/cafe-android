@@ -1227,7 +1227,7 @@ function VistaMenu() {
               left: "50%",
               transform: "translateX(-50%)",
               maxWidth: 480,
-              width: "100%",
+              width: "calc(100% - 24px)",
               background: colors.surface.base,
               borderTop: `1px solid ${colors.border.default}`,
               padding: "12px 16px",
