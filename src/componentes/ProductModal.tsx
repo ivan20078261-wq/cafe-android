@@ -87,10 +87,11 @@ export default function ProductModal({
         width: "100%",
         position: "fixed",
         inset: 0,
-        background: "rgba(0,0,0,0.5)",
+        background: "rgba(28,25,23,0.45)",
         alignItems: "flex-end",
         zIndex: 1000,
         display: "flex",
+        justifyContent: "center",
       }}
     >
       <div
@@ -98,42 +99,50 @@ export default function ProductModal({
         onClick={(e) => e.stopPropagation()}
         style={{
           background: colors.surface.base,
-          borderTopLeftRadius: 30,
-          borderTopRightRadius: 30,
+          borderTopLeftRadius: 28,
+          borderTopRightRadius: 28,
+          maxWidth: 480,
           width: "100%",
-          maxHeight: "85%",
+          maxHeight: "88%",
           display: "flex",
           flexDirection: "column",
-          padding: "24px 24px 24px",
+          padding: "0 0 16px",
           position: "relative",
+          boxShadow: colors.shadow.lg,
         }}
       >
         <button
           onClick={onClose}
           style={{
             position: "absolute",
-            top: 12,
+            top: 14,
             right: 16,
-            background: "none",
-            border: "none",
-            fontSize: 22,
-            color: colors.text.muted,
+            width: 30,
+            height: 30,
+            borderRadius: "50%",
+            background: colors.surface.card,
+            border: `1px solid ${colors.border.soft}`,
+            fontSize: 15,
+            color: colors.text.secondary,
             cursor: "pointer",
             lineHeight: 1,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 5,
           }}
         >
-          ✕
+          X
         </button>
 
         <div className="modal-scroll">
           {cafe.imagen_url && (
             <div
               style={{
-                width: "auto",
-                height: 200,
-                borderRadius: 16,
+                width: "100%",
+                height: 220,
                 overflow: "hidden",
-                marginBottom: 16,
+                marginBottom: 20,
               }}
             >
               <img
@@ -148,75 +157,90 @@ export default function ProductModal({
               />
             </div>
           )}
-          <h2
-            style={{
-              fontSize: 22,
-              color: colors.text.primary,
-              marginBottom: 4,
-              paddingRight: 32,
-            }}
-          >
-            {cafe.nombre}
-          </h2>
-          <p
-            style={{
-              fontSize: 14,
-              color: colors.text.muted,
-              lineHeight: 1.4,
-              marginBottom: 20,
-            }}
-          >
-            {cafe.descripcion}
-          </p>
-
-          <SelectorModificadores
-            productoId={cafe.id}
-            onChange={handleModChange}
-          />
-
-          <div className="milk-section">
+          <div style={{ padding: "0 22px" }}>
+            <h2
+              style={{
+                fontSize: 22,
+                color: colors.text.primary,
+                marginBottom: 6,
+                paddingRight: 28,
+                letterSpacing: "-0.01em",
+              }}
+            >
+              {cafe.nombre}
+            </h2>
             <p
               style={{
                 fontSize: 14,
-                fontWeight: 600,
-                color: colors.text.secondary,
+                color: colors.text.muted,
+                lineHeight: 1.5,
                 marginBottom: 8,
               }}
             >
-              Cantidad
+              {cafe.descripcion}
             </p>
-            <div className="quantity-row">
-              <button className="qty-btn" onClick={restar}>−</button>
-              <span className="qty-value">{cantidad}</span>
-              <button className="qty-btn" onClick={sumar}>+</button>
-            </div>
+            <p
+              style={{
+                fontSize: 17,
+                fontWeight: 700,
+                color: colors.brand.espresso,
+                marginBottom: 4,
+              }}
+            >
+              ${precioUnitario}
+            </p>
           </div>
 
-          <div className="milk-section">
-            <p
-              style={{
-                fontSize: 14,
-                fontWeight: 600,
-                color: colors.text.secondary,
-                marginBottom: 8,
-              }}
-            >
-              Notas
-            </p>
-            <textarea
-              className="notes-textarea"
-              placeholder="Algún detalle extra…"
-              value={notas}
-              onChange={(e) => setNotas(e.target.value)}
+          <div style={{ padding: "4px 22px 0" }}>
+            <SelectorModificadores
+              productoId={cafe.id}
+              onChange={handleModChange}
             />
+
+            <div className="milk-section">
+              <p
+                style={{
+                  fontSize: 14,
+                  fontWeight: 600,
+                  color: colors.text.secondary,
+                  marginBottom: 10,
+                }}
+              >
+                Cantidad
+              </p>
+              <div className="quantity-row">
+                <button className="qty-btn" onClick={restar}>−</button>
+                <span className="qty-value">{cantidad}</span>
+                <button className="qty-btn" onClick={sumar}>+</button>
+              </div>
+            </div>
+
+            <div className="milk-section">
+              <p
+                style={{
+                  fontSize: 14,
+                  fontWeight: 600,
+                  color: colors.text.secondary,
+                  marginBottom: 10,
+                }}
+              >
+                Notas
+              </p>
+              <textarea
+                className="notes-textarea"
+                placeholder="Algún detalle extra…"
+                value={notas}
+                onChange={(e) => setNotas(e.target.value)}
+              />
+            </div>
           </div>
         </div>
 
         <div className="modal-footer">
-          <div>
+          <div style={{ paddingLeft: 22 }}>
             <p
               style={{
-                fontSize: 13,
+                fontSize: 12,
                 color: colors.text.muted,
                 margin: 0,
               }}
@@ -225,7 +249,7 @@ export default function ProductModal({
             </p>
             <p
               style={{
-                fontSize: 22,
+                fontSize: 20,
                 fontWeight: 700,
                 color: colors.text.primary,
                 margin: 0,
@@ -237,7 +261,7 @@ export default function ProductModal({
           <button
             className="add-btn"
             style={{
-              background: colors.border.active,
+              background: colors.brand.espresso,
               color: colors.text.onDark,
             }}
             onClick={handleAdd}

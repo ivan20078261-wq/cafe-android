@@ -31,59 +31,68 @@ export default function SelectorModificadores({
   const [selections, setSelections] = useState<Record<number, number[]>>({});
 
   useEffect(() => {
-    fetchModifiers();
-  }, [productoId]);
+    let activo = true;
 
-  async function fetchModifiers() {
-    const { data: rels } = await supabase
-      .from("producto_modificador")
-      .select("modificador_id")
-      .eq("producto_id", productoId);
+    async function cargarModificadores() {
+      const { data: rels } = await supabase
+        .from("producto_modificador")
+        .select("modificador_id")
+        .eq("producto_id", productoId);
 
-    if (!rels || rels.length === 0) {
-      setGroups([]);
-      setSelections({});
-      onChange({}, []);
-      return;
-    }
-
-    const modIds = rels.map((r) => r.modificador_id);
-
-    const { data: mods } = await supabase
-      .from("modificadores")
-      .select("*")
-      .in("id", modIds)
-      .order("orden");
-
-    if (!mods) return;
-
-    const { data: opts } = await supabase
-      .from("opciones_modificador")
-      .select("*")
-      .in("modificador_id", modIds)
-      .order("orden");
-
-    const groupsWithOpts: Grupo[] = mods.map((m) => ({
-      id: m.id,
-      nombre: m.nombre,
-      tipo: m.tipo,
-      requerido: m.requerido,
-      opciones: (opts || []).filter((o) => o.modificador_id === m.id),
-    }));
-
-    setGroups(groupsWithOpts);
-
-    const init: Record<number, number[]> = {};
-    for (const g of groupsWithOpts) {
-      if (g.tipo === "select" && g.opciones.length > 0) {
-        init[g.id] = [g.opciones[0].id];
-      } else {
-        init[g.id] = [];
+      if (!rels || rels.length === 0) {
+        if (!activo) return;
+        setGroups([]);
+        setSelections({});
+        onChange({}, []);
+        return;
       }
+
+      const modIds = rels.map((r) => r.modificador_id);
+
+      const { data: mods } = await supabase
+        .from("modificadores")
+        .select("*")
+        .in("id", modIds)
+        .order("orden");
+
+      if (!mods) return;
+
+      const { data: opts } = await supabase
+        .from("opciones_modificador")
+        .select("*")
+        .in("modificador_id", modIds)
+        .order("orden");
+
+      if (!activo) return;
+
+      const groupsWithOpts: Grupo[] = mods.map((m) => ({
+        id: m.id,
+        nombre: m.nombre,
+        tipo: m.tipo,
+        requerido: m.requerido,
+        opciones: (opts || []).filter((o) => o.modificador_id === m.id),
+      }));
+
+      setGroups(groupsWithOpts);
+
+      const init: Record<number, number[]> = {};
+      for (const g of groupsWithOpts) {
+        if (g.tipo === "select" && g.opciones.length > 0) {
+          init[g.id] = [g.opciones[0].id];
+        } else {
+          init[g.id] = [];
+        }
+      }
+      setSelections(init);
+      onChange(init, groupsWithOpts);
     }
-    setSelections(init);
-    onChange(init, groupsWithOpts);
-  }
+
+    cargarModificadores();
+    return () => {
+      activo = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productoId]);
 
   function toggleOption(groupId: number, opcionId: number, tipo: string) {
     setSelections((prev) => {

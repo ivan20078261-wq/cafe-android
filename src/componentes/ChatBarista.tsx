@@ -64,13 +64,21 @@ export default function ChatBarista({ items, onClose }: { items: { nombre: strin
       <div className="chat-sheet" onClick={(e) => e.stopPropagation()}>
         <div className="chat-header">
           <div className="chat-header-left">
-            <div className="chat-avatar">☕</div>
+            <div className="chat-avatar">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17 8h1a4 4 0 0 1 0 8h-1" />
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" />
+                <line x1="6" y1="2" x2="6" y2="4" />
+                <line x1="10" y1="2" x2="10" y2="4" />
+                <line x1="14" y1="2" x2="14" y2="4" />
+              </svg>
+            </div>
             <div>
               <h3 className="chat-title">Barista Virtual</h3>
               <p className="chat-subtitle">Siempre disponible para ayudarte</p>
             </div>
           </div>
-          <button className="chat-close" onClick={onClose}>✕</button>
+          <button className="chat-close" onClick={onClose}>X</button>
         </div>
 
         <div className="chat-messages" ref={scrollRef}>

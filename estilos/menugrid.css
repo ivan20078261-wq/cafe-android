@@ -1,0 +1,14 @@
+.menu-item {
+    transition:
+        transform 0.12s ease,
+        background 0.15s,
+        border-color 0.2s;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.menu-item:active {
+    transform: scale(0.98);
+    background: #f2f1ee;
+}

@@ -1,39 +1,50 @@
 export const colors = {
   // ── Marca ──────────────────────────────────────────────
+  // En el modo "moderno limpio" el espresso es el único acento
+  // (CTAs, selección, estado activo). El resto es neutro.
   brand: {
-    espresso: "#2C1810", // marrón café profundo — CTA principal, header badge
-    latte: "#8B6840", // marrón medio — íconos, bordes activos
-    crema: "#F5ECD8", // crema suave — texto sobre fondo oscuro
-    leche: "#EDE0CC", // café con leche — fondos de miniaturas/thumbs
+    espresso: "#2C1810", // marrón café profundo — CTAs, selección
+    latte: "#8B6840", // marrón medio — precios, detalles secundarios
+    crema: "#FDFBF7", // tinta sobre fondo oscuro
+    leche: "#F7F7F5", // fondos de thumbnails / chips
   },
 
   // ── Fondo / superficies ────────────────────────────────
   surface: {
-    base: "#FDFBF7", // fondo principal de la app (crema cálido)
-    card: "#F5EDE0", // tarjetas hover / bottom sheet bloques
-    section: "#F0E8DB", // separadores, fondos de sección
-    input: "#FDFBF7", // fondo de inputs y textareas
+    base: "#FFFFFF", // fondo principal de la app
+    card: "#F7F7F5", // tarjetas y chips (gris cálido muy suave)
+    section: "#F2F1EE", // separadores, fondos de sección
+    input: "#FFFFFF", // inputs y textareas
   },
 
   // ── Bordes ─────────────────────────────────────────────
   border: {
-    default: "#EAE0D0", // hairline por defecto
-    soft: "#F0E8DB", // divisores entre cards
-    strong: "#D5C8B5", // bordes de botones secundarios
-    active: "#2C1810", // borde de opción seleccionada
+    default: "#ECEBE7", // hairline por defecto
+    soft: "#F2F1EE", // divisores entre cards
+    strong: "#D9D7D1", // bordes de botones secundarios
+    active: "#2C1810", // opción seleccionada
     veg: "#C4703A", // borde terracota — leches vegetales seleccionadas
   },
 
   // ── Texto ──────────────────────────────────────────────
   text: {
-    primary: "#2C1810", // títulos y valores principales
-    secondary: "#5C4030", // texto de opciones / botones
-    muted: "#9B8B7A", // descripciones, labels, subtítulos
-    onDark: "#F5ECD8", // texto sobre fondos oscuros (espresso)
+    primary: "#1C1917", // título principal (casi negro cálido)
+    secondary: "#44403C", // opciones / botones
+    muted: "#8A8680", // descripciones, labels, subtítulos
+    onDark: "#FDFBF7", // texto sobre fondos oscuros (espresso)
     veg: "#7A3A10", // texto de leches vegetales seleccionadas
   },
 
-  // ── Estados de mesa / pedidos ──────────────────────────
+  // ── Sombras ────────────────────────────────────────────
+  shadow: {
+    sm: "0 1px 2px rgba(28,25,23,0.05)",
+    md: "0 2px 10px rgba(28,25,23,0.07)",
+    lg: "0 10px 30px rgba(28,25,23,0.10)",
+    bar: "0 -2px 14px rgba(28,25,23,0.06)",
+    fab: "0 6px 20px rgba(28,25,23,0.22)",
+  },
+
+  // ── Estados de mesa / pedidos (compat, heredados) ──────
   status: {
     libre: {
       silla: "#C8B99A",
@@ -67,18 +78,18 @@ export const colors = {
     },
   },
 
-  // ── Sala / plano ───────────────────────────────────────
+  // ── Sala / plano (compat, heredados) ───────────────────
   salon: {
-    piso: "#EFE1CC", // tablones del piso
-    pisoAlt: "#EAD9C0", // variación de tablón
-    pisoBorde: "#D9C8B0", // línea entre tablones
-    pared: "#C8B99A", // paredes laterales
-    paredSombra: "#B8A88A", // borde interior de pared
-    planta: "#2D6A4F", // hojas de plantas decorativas
-    plantaOsc: "#1B4332", // hojas oscuras
-    plantaMac: "#8B6914", // maceta
-    ventana: "#A8C4D8", // vidrio de ventanas
-    barra: "#C8A870", // mostrador/barra lateral
+    piso: "#EFE1CC",
+    pisoAlt: "#EAD9C0",
+    pisoBorde: "#D9C8B0",
+    pared: "#C8B99A",
+    paredSombra: "#B8A88A",
+    planta: "#2D6A4F",
+    plantaOsc: "#1B4332",
+    plantaMac: "#8B6914",
+    ventana: "#A8C4D8",
+    barra: "#C8A870",
   },
 } as const;
 

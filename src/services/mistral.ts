@@ -1,5 +1,6 @@
-const MISTRAL_API_KEY = import.meta.env.VITE_MISTRAL_API_KEY;
-const MISTRAL_URL = "https://api.mistral.ai/v1/chat/completions";
+import { supabase } from "../supabase";
+
+const MISTRAL_FUNCTION = "ask-mistral";
 
 interface ChatMessage {
   role: "system" | "user" | "assistant";
@@ -16,33 +17,23 @@ async function chat(
   messages: ChatMessage[],
   options: ChatOptions = {},
 ): Promise<string | null> {
-  if (!MISTRAL_API_KEY) {
-    console.error("Falta VITE_MISTRAL_API_KEY en .env");
-    return null;
-  }
-
   try {
-    const res = await fetch(MISTRAL_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${MISTRAL_API_KEY}`,
-      },
-      body: JSON.stringify({
+    const { data, error } = await supabase.functions.invoke(MISTRAL_FUNCTION, {
+      body: {
         model: options.model || "mistral-small-latest",
         messages,
         temperature: options.temperature ?? 0.7,
         max_tokens: options.max_tokens ?? 300,
-      }),
+        requireAuth: false,
+      },
     });
 
-    if (!res.ok) {
-      console.error("Error Mistral:", res.status, await res.text());
+    if (error) {
+      console.error("Error Mistral:", error);
       return null;
     }
 
-    const data = await res.json();
-    return data.choices[0]?.message?.content?.trim() ?? null;
+    return data.content ?? null;
   } catch (err) {
     console.error("Error de red con Mistral:", err);
     return null;

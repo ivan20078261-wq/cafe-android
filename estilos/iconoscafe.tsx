@@ -125,7 +125,7 @@ export function IconCappuccino(props: CoffeeIconProps) {
 
 /* ── Latte ──────────────────────────────────────────────── */
 export function IconLatte(props: CoffeeIconProps) {
-  const { size, stroke, strokeLight: _strokeLight, rest } = withDefaults(props);
+  const { size, stroke, rest } = withDefaults(props);
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" {...rest}>
       <path
@@ -156,7 +156,7 @@ export function IconLatte(props: CoffeeIconProps) {
 
 /* ── Flat White ─────────────────────────────────────────── */
 export function IconFlatWhite(props: CoffeeIconProps) {
-  const { size, stroke, strokeLight: _strokeLight, rest } = withDefaults(props);
+  const { size, stroke, rest } = withDefaults(props);
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" {...rest}>
       <path
@@ -230,7 +230,7 @@ export function IconColdBrew(props: CoffeeIconProps) {
 
 /* ── Cortado ────────────────────────────────────────────── */
 export function IconCortado(props: CoffeeIconProps) {
-  const { size, stroke, strokeLight: _strokeLight, rest } = withDefaults(props);
+  const { size, stroke, rest } = withDefaults(props);
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" {...rest}>
       <path
@@ -260,6 +260,7 @@ export function IconCortado(props: CoffeeIconProps) {
 }
 
 /* ── Mapa nombre → componente, útil para renderizar dinámicamente ── */
+// eslint-disable-next-line react-refresh/only-export-components
 export const COFFEE_ICONS = {
   espresso: IconEspresso,
   cappuccino: IconCappuccino,

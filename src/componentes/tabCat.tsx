@@ -1,71 +1,57 @@
-import { useEffect, useState } from "react";
 import { colors } from "../../services/colors";
-import "./tabcat.css";
-import { supabase } from "../supabase";
+import { etiquetaDe } from "./menu";
 
-export default function TabCat() {
-  const [categorias, setCategorias] = useState<string[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function cargarCategorias() {
-      try {
-        const { data, error } = await supabase
-          .from("productos")
-          .select("categoria")
-          .not("categoria", "is", null);
-
-        if (error) {
-          throw error;
-        }
-
-        const categoriasUnicas = [
-          ...new Set(data.map((p) => p.categoria)),
-        ].filter(Boolean);
-        setCategorias(categoriasUnicas);
-      } catch (err) {
-        setError("Error al cargar categorías");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    cargarCategorias();
-  }, []); // El array vacío [] asegura que solo se ejecute una vez al montar el componente
-
-  if (loading) {
-    return (
-      <div className="boxcat" style={{ backgroundColor: colors.surface.card }}>
-        Cargando...
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="boxcat" style={{ backgroundColor: colors.surface.card }}>
-        {error}
-      </div>
-    );
-  }
+export default function TabCat({
+  categorias,
+  activa,
+  onCambiar,
+}: {
+  categorias: string[];
+  activa: string | null;
+  onCambiar: (seccionId: string) => void;
+}) {
+  if (categorias.length === 0) return null;
 
   return (
-    <div className="boxcat">
-      {categorias.map((categoria) => (
-        <button
-          key={categoria}
-          className="categoria-button"
-          style={{
-            backgroundColor: colors.surface.card,
-            width: "30%",
-            borderRadius: 15,
-          }}
-        >
-          {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
-        </button>
-      ))}
+    <div
+      className="no-scrollbar"
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        display: "flex",
+        gap: 8,
+        overflowX: "auto",
+        background: colors.surface.base,
+        padding: "12px 16px 10px",
+        borderBottom: `1px solid ${colors.border.soft}`,
+      }}
+    >
+      {categorias.map((cat, i) => {
+        const seccionId = `seccion-${i}`;
+        const esActivo = activa === seccionId;
+        return (
+          <button
+            key={cat}
+            onClick={() => onCambiar(seccionId)}
+            style={{
+              flexShrink: 0,
+              border: "none",
+              cursor: "pointer",
+              borderRadius: 999,
+              padding: "8px 16px",
+              fontSize: 13,
+              fontWeight: 600,
+              background: esActivo ? colors.brand.espresso : colors.surface.card,
+              color: esActivo ? colors.text.onDark : colors.text.secondary,
+              transition: "background 0.2s, color 0.2s",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {etiquetaDe(cat)}
+          </button>
+        );
+      })}
     </div>
   );
 }
